@@ -18,3 +18,6 @@
 
 
 Описание api см. wiki https://github.com/ame-ne/CoreLibraryApi/wiki
+
+Развёртывание https://metanit.com/sharp/aspnet5/20.1.php <br/>
+И в application pool->[выбрать нужный]->advanced settings->identity выбрать LocalSystem
