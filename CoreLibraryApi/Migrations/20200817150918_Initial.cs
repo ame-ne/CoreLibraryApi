@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace CoreLibraryApi.Migrations
 {
@@ -12,7 +13,7 @@ namespace CoreLibraryApi.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     FIO = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -25,7 +26,7 @@ namespace CoreLibraryApi.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Content = table.Column<byte[]>(nullable: true),
                     Length = table.Column<int>(nullable: false)
                 },
@@ -39,7 +40,7 @@ namespace CoreLibraryApi.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Title = table.Column<string>(nullable: true),
                     Count = table.Column<int>(nullable: false)
                 },
@@ -53,7 +54,7 @@ namespace CoreLibraryApi.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Title = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -66,7 +67,7 @@ namespace CoreLibraryApi.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     ActionBy = table.Column<string>(nullable: true),
                     ActionDate = table.Column<DateTime>(nullable: false),
                     Url = table.Column<string>(nullable: true),
@@ -83,7 +84,7 @@ namespace CoreLibraryApi.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     FirstName = table.Column<string>(nullable: true),
                     LastName = table.Column<string>(nullable: true),
                     Login = table.Column<string>(nullable: true),
@@ -101,7 +102,7 @@ namespace CoreLibraryApi.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Name = table.Column<string>(nullable: true),
                     Type = table.Column<int>(nullable: false),
                     IsMain = table.Column<bool>(nullable: false),
@@ -179,7 +180,7 @@ namespace CoreLibraryApi.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     BookId = table.Column<int>(nullable: false),
                     UserId = table.Column<int>(nullable: false),
                     DateFrom = table.Column<DateTime>(nullable: true),
@@ -239,8 +240,7 @@ namespace CoreLibraryApi.Migrations
                 name: "IX_Users_Login",
                 table: "Users",
                 column: "Login",
-                unique: true,
-                filter: "[Login] IS NOT NULL");
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

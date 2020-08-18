@@ -26,6 +26,14 @@ namespace CoreLibraryApi.Controllers
             return Ok(books);
         }
 
+        [HttpGet("dapper")]
+        [AllowAnonymous]
+        public IActionResult GetWithDapper()
+        {
+            var books = _repository.GetAllWithDapper();
+            return Ok(books);
+        }
+
         [HttpGet("{id}")]
         [AllowAnonymous]
         public async Task<IActionResult> Get(int id)

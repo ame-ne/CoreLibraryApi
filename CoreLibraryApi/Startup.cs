@@ -28,11 +28,17 @@ namespace CoreLibraryApi
 
         public void ConfigureServices(IServiceCollection services)
         {
+            //services.AddDbContext<ApplicationDbContext>(options =>
+            //    options.UseSqlServer(_configuration["Data:Library:MsSQLCS"]));
+
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(_configuration["Data:Library:ConnectionString"]));
+                options.UseNpgsql(_configuration["Data:Library:PostgreSQLCS"]));
 
             var appSettingsSection = _configuration.GetSection("AppSettings");
             services.Configure<AppSettings>(appSettingsSection);
+
+            var connStringSection = _configuration.GetSection("Data:Library");
+            services.Configure<ConnectionSettings>(connStringSection);
 
             var appSettings = appSettingsSection.Get<AppSettings>();
             var key = appSettings.Secret; //или просто _configuration["AppSettings:Secret"]
